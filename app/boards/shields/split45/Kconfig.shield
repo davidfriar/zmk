@@ -1,0 +1,6 @@
+
+config SHIELD_SPLIT45_LEFT
+    def_bool $(shields_list_contains,split45_left)
+
+config SHIELD_SPLIT45_RIGHT
+    def_bool $(shields_list_contains,split45_right)

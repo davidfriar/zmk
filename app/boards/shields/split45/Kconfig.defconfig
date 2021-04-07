@@ -1,0 +1,23 @@
+if SHIELD_SPLIT45_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "The Split 45"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_SPLIT45_RIGHT
+
+config ZMK_KEYBOARD_NAME
+    default "The Split 45 R"
+
+endif
+
+if SHIELD_SPLIT45_LEFT || SHIELD_SPLIT45_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
