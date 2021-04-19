@@ -4,8 +4,8 @@
 #include <dt-bindings/zmk/outputs.h>
 
  #define DEFAULT 0
- #define LOWER  1
- #define RAISE  2
+ #define RAISE  1
+ #define LOWER  2
  #define SYS 3
 
 
