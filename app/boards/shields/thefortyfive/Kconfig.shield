@@ -1,0 +1,4 @@
+
+config SHIELD_THEFORTYFIVE
+    def_bool $(shields_list_contains,thefortyfive)
+
