@@ -152,6 +152,7 @@ static const uint8_t zmk_hid_report_desc[] = {
     HID_INPUT(ZMK_HID_MAIN_VAL_DATA | ZMK_HID_MAIN_VAL_VAR | ZMK_HID_MAIN_VAL_REL),
     HID_END_COLLECTION, HID_END_COLLECTION,
 #endif // IS_ENABLED(CONFIG_ZMK_MOUSE)
+
 #if IS_ENABLED(CONFIG_ZMK_PLOVER_HID)
     /* USAGE (\xffPLV) */
     HID_ITEM(HID_ITEM_TAG_USAGE_PAGE, HID_ITEM_TYPE_GLOBAL, 2), 0x50, 0xff,
@@ -253,8 +254,6 @@ struct zmk_hid_mouse_report {
 
 #endif // IS_ENABLED(CONFIG_ZMK_MOUSE)
 
-zmk_mod_flags_t zmk_hid_get_explicit_mods(void);
-
 struct zmk_hid_plover_report_body {
     uint8_t buttons[ZMK_HID_PLOVER_SIZE];
 } __packed;
@@ -264,7 +263,7 @@ struct zmk_hid_plover_report {
     struct zmk_hid_plover_report_body body;
 } __packed;
 
-zmk_mod_flags_t zmk_hid_get_explicit_mods();
+zmk_mod_flags_t zmk_hid_get_explicit_mods(void);
 int zmk_hid_register_mod(zmk_mod_t modifier);
 int zmk_hid_unregister_mod(zmk_mod_t modifier);
 bool zmk_hid_mod_is_pressed(zmk_mod_t modifier);
@@ -298,6 +297,10 @@ int zmk_hid_mouse_buttons_release(zmk_mouse_button_flags_t buttons);
 void zmk_hid_mouse_clear(void);
 #endif // IS_ENABLED(CONFIG_ZMK_MOUSE)
 
+int zmk_hid_plover_press(zmk_key_t key);
+int zmk_hid_plover_release(zmk_key_t key);
+void zmk_hid_plover_clear();
+
 struct zmk_hid_keyboard_report *zmk_hid_get_keyboard_report(void);
 struct zmk_hid_consumer_report *zmk_hid_get_consumer_report(void);
 
@@ -308,8 +311,5 @@ zmk_hid_boot_report_t *zmk_hid_get_boot_report();
 #if IS_ENABLED(CONFIG_ZMK_MOUSE)
 struct zmk_hid_mouse_report *zmk_hid_get_mouse_report();
 #endif // IS_ENABLED(CONFIG_ZMK_MOUSE)
-int zmk_hid_plover_press(zmk_key_t key);
-int zmk_hid_plover_release(zmk_key_t key);
-void zmk_hid_plover_clear();
 
 struct zmk_hid_plover_report *zmk_hid_get_plover_report();

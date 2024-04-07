@@ -224,17 +224,13 @@ int zmk_endpoints_send_report(uint16_t usage_page) {
 
     case HID_USAGE_CONSUMER:
         return send_consumer_report();
-        //
-        // FIXME: we should not and the usage page here, we should make sure
-        // the whole page gets here
-#if IS_ENABLED(CONFIG_ZMK_PLOVER_HID)
-    case (HID_USAGE_VENDOR_PLOVER & 0xFF):
-        return send_plover_report();
-#endif /* IS_ENABLED(CONFIG_ZMK_PLOVER_HID) */
-    default:
-        LOG_ERR("Unsupported usage page %d", usage_page);
-        return -ENOTSUP;
     }
+    // FIXME: we should not and the usage page here, we should make sure
+    // the whole page gets here
+#if IS_ENABLED(CONFIG_ZMK_PLOVER_HID)
+case (HID_USAGE_VENDOR_PLOVER & 0xFF):
+    return send_plover_report();
+#endif /* IS_ENABLED(CONFIG_ZMK_PLOVER_HID) */
 
     LOG_ERR("Unsupported usage page %d", usage_page);
     return -ENOTSUP;
