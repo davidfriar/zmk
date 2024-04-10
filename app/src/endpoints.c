@@ -189,7 +189,7 @@ static int send_consumer_report(void) {
 #if IS_ENABLED(CONFIG_ZMK_PLOVER_HID)
 static int send_plover_report() {
     struct zmk_hid_plover_report *plover_report = zmk_hid_get_plover_report();
-    switch (current_endpoint) {
+    switch (current_instance.transport) {
 #if IS_ENABLED(CONFIG_ZMK_USB)
     case ZMK_ENDPOINT_USB: {
         int err = zmk_usb_hid_send_report((uint8_t *)plover_report, sizeof(*plover_report));
