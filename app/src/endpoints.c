@@ -209,7 +209,7 @@ static int send_plover_report() {
     }
 #endif /* IS_ENABLED(CONFIG_ZMK_BLE) */
     default:
-        LOG_ERR("Unsupported endpoint %d", current_endpoint);
+        LOG_ERR("Unsupported endpoint %d", current_instance.transport);
         return -ENOTSUP;
     }
 }
